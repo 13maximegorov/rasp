@@ -1,0 +1,54 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.web-title {
+    font-weight: 700;
+    color: #0043A4;
+}
+
+.rasp-title {
+    font-weight: 700;
+}
+.card {
+    background: #e6eaef;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #e6eaef;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 3px 0px gray;
+}
+
+a {
+    text-decoration: none!important;
+}
+
+h5.card-title {
+    color: black;
+    font-size: 22px;
+}
+
+.nav-pan li{
+    padding: 0 10px;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.focus1 {
+    color: white;
+    background: #0043A4;
+    border-radius: 5px;
+}
+
+.nav-pan li a {
+    padding: 5px 7px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
