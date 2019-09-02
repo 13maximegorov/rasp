@@ -1,54 +1,120 @@
-* {
-    font-family: 'Open Sans', sans-serif;
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 0 auto;
+}
+
+p, h1, h2, h3, h4, h5, span {
+    font-family: 'Roboto', sans-serif
+}
+
+body {
+    background: white;
 }
 
 .web-title {
+    margin: 25px 0;
+    font-size: 36px;
     font-weight: 700;
     color: #0043A4;
+    letter-spacing: 0.5px;
 }
 
 .rasp-title {
-    font-weight: 700;
+    margin: 30px 0;
+    font-size: 30px;
+    font-weight: 500;
 }
+
+.web-result h3 {
+    font-size: 26px!important;
+}
+
+@media screen and (max-width: 362px){
+    .web-title {
+        font-size: 28px;
+    }
+    .rasp-title {
+        font-size: 22px;
+    }
+}
+
+.card-img-top {
+    width: 100%;
+    padding: 14px 14px 0;
+}
+
 .card {
     background: #e6eaef;
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #e6eaef;
-    transition: .3s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 3px 0px gray;
 }
 
 a {
     text-decoration: none!important;
 }
 
-h5.card-title {
+.card-body h5 {
     color: black;
-    font-size: 22px;
+    font-size: 24px;
+    margin: 10px 0 20px;
+    font-weight: 400!important;
+}
+
+.nav-pan {
+    padding-top: 15px;
 }
 
 .nav-pan li{
+    margin: 5px 0 15px;
     padding: 0 10px;
     display: inline-block;
     font-size: 20px;
-}
-
-.focus1 {
-    color: white;
-    background: #0043A4;
-    border-radius: 5px;
 }
 
 .nav-pan li a {
     padding: 5px 7px;
 }
 
-.mb-30 {
+form {
+    margin-top: 40px;
+}
+
+.dropdown-content {
+    overflow-y: auto !important;
+    backface-visibility: hidden !important;
+}
+
+.input-field {
     margin-bottom: 30px;
 }
 
+.prev a {
+    margin: 16px 0 8px;
+}
+
+table {
+    margin-top: 20px;
+}
+
+.card-panel {
+    margin-top: 20px;
+}
+
+.page-footer {
+    padding-top: 0;
+}
+
+.btn-sub {
+    width: 100%;
+}

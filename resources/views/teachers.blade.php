@@ -1,27 +1,32 @@
 @extends('layouts.welcome')
 
 @section('content')
-    <div class="row my-4">
-        <ul class="nav-pan mx-auto px-1 text-center">
-            <li class="focus1 mb-2"><a href="/teachers" class="text-white">Преподаватели</a></li>
-            <li class="mb-2"><a href="/students" class="text-dark">Студенты</a></li>
+    <div>
+        <ul class="nav-pan center-align">
+            <li class="waves-effect waves-teal btn-flat"><a href="/students" class="black-text">Студенты</a></li>
+            <li class="waves-effect waves-block btn teal lighten-1"><a href="/teachers" class="white-text">Преподаватели</a></li>
         </ul>
     </div>
-    <a href="/" class="btn btn-outline-secondary mb-3">Назад</a>
-
-    <form action="/teachers" method="post" class="mt-2 text-center
-">
+    <div class="row">
+        <div class="">
+    <div class="left-align prev">
+        <a href="/" class="waves-effect waves-light btn teal lighten-2"><i class="material-icons left">fast_rewind</i>Назад</a>
+    </div>
+    <form action="/teachers" method="post" class="center-align">
         {{csrf_field()}}
-        <div class="form-group">
-            <select class="custom-select" name="teacher" required>
-                <option value="">Выберите преподавателя</option>
+        <div class="input-field">
+            <select name="teacher" required>
+                <option value="" disabled selected>Выберите преподавателя</option>
                 @foreach($teachers as $teacher)
                 <option value="{{$teacher}}">{{$teacher}}</option>
                 @endforeach
             </select>
-            <div class="invalid-feedback">Example invalid custom select feedback</div>
         </div>
-        <input type="date" class="form-control" id="date" name="date" placeholder="Дата" required>
-        <button class="btn btn-outline-primary mt-3" name="search_teachers">Найти</button>
+        <div class="input-field"><input name="date" type="text" class="datepicker" placeholder="Дата"></div>
+        <div class="input-field">
+            <button type="submit" value="any_value" class="waves-effect waves-light btn-large teal darken-1 btn-sub" name="action">Найти</button>
+        </div>
     </form>
+        </div>
+    </div>
 @endsection

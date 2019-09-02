@@ -1,16 +1,18 @@
 @extends('layouts.welcome')
 
 @section('content')
-    <div class="text-center">
+    <div class="center-align web-result">
         @if(\Illuminate\Support\Facades\Session::has('infoGroup'))
             <h3>на <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['DateShedule']}}</b> для группы <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['Group']}}</b></h3>
         @endif
     </div>
-    <div class="mt-5">
-        <a href="/" class="btn btn-outline-secondary mb-3">Назад</a>
-                <div class="">
+    <div class="left-align prev">
+        <a href="/" class="waves-effect waves-light btn"><i class="material-icons left">fast_rewind</i>Назад</a>
+    </div>
+    <div>
+                <div class="center-align">
                     @if(\Illuminate\Support\Facades\Session::has('shedule'))
-                    <table class="table table-hover table-responsive ">
+                    <table class="striped responsive-table">
                         <thead>
                         <tr>
                             <th scope="col">Пара</th>
@@ -43,7 +45,7 @@
                         </tbody>
                     </table>
                     @else
-                        <div class="alert alert-secondary" role="alert">
+                        <div class="card-panel grey lighten-3" role="alert">
                             {{\Illuminate\Support\Facades\Session::get('message')}}
                         </div>
                     @endif
