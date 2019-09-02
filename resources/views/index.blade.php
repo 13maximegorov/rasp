@@ -1,14 +1,11 @@
 @extends('layouts.welcome')
 
 @section('content')
-    <div class="center-align">
-        <p class="red-text">*для корректного отображения очистите кеш вашего браузера</p>
-    </div>
         <div class="row center-align">
             <div class="col s12 m6 l4 offset-l2 offset-0">
                 <a href="/students">
                     <div class="card hoverable">
-                        <img class="card-img-top" src="{{asset('img/students.svg')}}" alt="">
+                        <img class="card-img-top" src="{{asset('img/students1.svg')}}" alt="">
                         <div class="card-body">
                             <h5 class="card-title">Студенты</h5>
                         </div>
@@ -19,7 +16,7 @@
             <div class="col s12 m6 l4">
                 <a href="/teachers">
                     <div class="card hoverable">
-                        <img class="card-img-top" src="{{asset('img/teacher.svg')}}" alt="">
+                        <img class="card-img-top" src="{{asset('img/teacher1.svg')}}" alt="">
                         <div class="card-body">
                             <h5 class="card-title">Преподаватели</h5>
                         </div>
