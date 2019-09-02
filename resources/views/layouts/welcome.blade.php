@@ -29,7 +29,6 @@
             <div class="center-align">
                 <h3 class="rasp-title">Расписание</h3>
             </div>
-
             <div class="container">
                 @yield('content')
             </div>
@@ -38,7 +37,7 @@
         <footer class="page-footer grey lighten-5">
             <div class="footer-copyright">
                 <div class="container grey-text text-darken-1">
-                    2019
+                    {{date("Y")}}
                     <a class="grey-text text-darken-1 right" href="http://www.uatk.ru">УАТК</a>
                 </div>
             </div>

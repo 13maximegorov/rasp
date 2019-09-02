@@ -9,6 +9,9 @@
     <div class="left-align prev">
         <a href="/" class="waves-effect waves-light btn"><i class="material-icons left">fast_rewind</i>Назад</a>
     </div>
+    <div class="center-align hide-on-large-only show-on-small">
+        <p class="red-text">*таблица листается влево-вправо</p>
+    </div>
     <div>
                 <div class="center-align">
                     @if(\Illuminate\Support\Facades\Session::has('shedule'))
