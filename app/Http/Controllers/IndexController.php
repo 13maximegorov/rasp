@@ -46,6 +46,7 @@ class IndexController extends Controller
             'date' => 'required'
         ]);
 
+        Session::flush();
         ini_set("soap.wsdl_cache_enabled", "0");
         $client = new SoapClient("http://77.94.125.2:48666/collegework/ws/shedule?wsdl", ['location' => 'http://77.94.125.2:48666/collegework/ws/shedule', 'login' => "WS", 'password' => "123", 'exceptions' => 1]);
         $params['Group'] = $request->group;
@@ -72,6 +73,7 @@ class IndexController extends Controller
             'date' => 'required'
         ]);
 
+        Session::flush();
         ini_set("soap.wsdl_cache_enabled", "0");
         $client = new SoapClient("http://77.94.125.2:48666/collegework/ws/shedule?wsdl", ['location' => 'http://77.94.125.2:48666/collegework/ws/shedule', 'login' => "WS", 'password' => "123", 'exceptions' => 1]);
         $params['Teacher'] = $request->teacher;
