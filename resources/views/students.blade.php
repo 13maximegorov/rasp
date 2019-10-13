@@ -2,7 +2,6 @@
 
 @section('content')
     <div>
-        {{$time}}
         <ul class="nav-pan text-center">
             <li class="btn teal-b
 "><a href="/students" class="text-white">Студенты</a></li>
