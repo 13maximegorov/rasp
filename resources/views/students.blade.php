@@ -2,32 +2,56 @@
 
 @section('content')
     <div>
-        <ul class="nav-pan center-align">
-            <li class="waves-effect waves-block btn teal lighten-1
-"><a href="/students" class="white-text">Студенты</a></li>
-            <li class="waves-effect waves-teal btn-flat"><a href="/teachers" class="black-text">Преподаватели</a></li>
+        {{$time}}
+        <ul class="nav-pan text-center">
+            <li class="btn teal-b
+"><a href="/students" class="text-white">Студенты</a></li>
+            <li class="btn"><a href="/teachers" class="text-dark">Преподаватели</a></li>
         </ul>
     </div>
-    <div class="row">
-        <div class="">
-            <div class="left-align prev">
-                <a href="/" class="waves-effect waves-light btn"><i class="material-icons left">fast_rewind</i>Назад</a>
+        <div>
+            <div class="text-left prev">
+                <a href="/" class="btn teal-b text-white d-inline-block">Назад</a>
             </div>
-            <form action="/students" method="post" class="center-align">
+            <form action="/students" method="post">
                 {{csrf_field()}}
-                <div class="input-field">
-                    <select name="group" required>
-                        <option value="" disabled selected>Выберите группу</option>
-                        @foreach($groups as $group)
-                            <option value="{{$group}}">{{$group}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="input-field"><input name="date" type="text" class="datepicker" placeholder="Дата"></div>
-                <div class="input-field">
-                    <button type="submit" value="any_value" class="waves-effect waves-light btn-large btn-sub" name="action">Найти</button>
+                <div class="row">
+                    <div class="col-12 col-md-8 order-1 order-md-0 order-lg-0 order-xl-0">
+                        <div>
+                            <ul class="group_list text-left">
+                                @foreach($groups as $group)
+                                    <li><button name="group" type="submit" value="{{$group}}" class="gr" href="#">{{$group}}</button></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 text-center mb-5">
+                            <div id="box">
+                                <div id="datepicker" class="mx-auto"></div>
+                                <input name="date" type="hidden" id="my_hidden_input">
+                            </div>
+                    </div>
                 </div>
             </form>
         </div>
-    </div>
+    <script>
+        $(document).ready(function(){
+            $('#datepicker').datepicker({
+                language: 'ru',
+                weekStart: 1,
+                format: 'yyyy-mm-dd',
+                startDate: '2019-01-01',
+                orientation: 'bottom left'
+            }).datepicker("setDate",'now');
+            $('#my_hidden_input').val(
+                $('#datepicker').datepicker('getFormattedDate')
+            );
+            $('#datepicker').on('changeDate', function() {
+                $('#my_hidden_input').val(
+                    $('#datepicker').datepicker('getFormattedDate')
+                );
+            });
+
+        });
+    </script>
 @endsection

@@ -3,10 +3,19 @@
     padding: 0;
 }
 
+#box {
+    margin-left: -8px!important;
+}
+
+.teal-b {
+    background: #009688;
+}
+
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background: white;
 }
 
 .main {
@@ -15,18 +24,6 @@ body {
 
 p, h1, h2, h3, h4, h5, span {
     font-family: 'Roboto', sans-serif
-}
-
-body {
-    background: white;
-}
-
-.web-title {
-    margin: 25px 0;
-    font-size: 36px;
-    font-weight: 700;
-    color: #0043A4;
-    letter-spacing: 0.5px;
 }
 
 .rasp-title {
@@ -48,16 +45,16 @@ body {
     }
 }
 
-.card-img-top {
-    width: 100%;
-    padding: 14px 14px 0;
-}
-
 .card {
     background: #e6eaef;
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #e6eaef;
+    transition: .3s;
+}
+
+.card:hover {
+    background: #d8dce1;
 }
 
 a {
@@ -67,7 +64,7 @@ a {
 .card-body h5 {
     color: black;
     font-size: 24px;
-    margin: 10px 0 20px;
+    margin: 20px 0 20px;
     font-weight: 400!important;
 }
 
@@ -118,3 +115,62 @@ table {
 .btn-sub {
     width: 100%;
 }
+
+.group_list li {
+    list-style-type: none;
+}
+
+button[name="group"], button[name="teacher"] {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 1px 0;
+    border-radius: 3px;
+    padding: 3px;
+    transition: .3s;
+}
+button[name="group"]:hover, button[name="teacher"]:hover {
+    color: white;
+    background: #009688 !important;
+}
+
+button[name="group"]:active, button[name="teacher"]:active {
+    color: white;
+    background: #009688 !important;
+}
+
+footer {
+    background: #fafafa!important;
+    color: #757575!important;
+    height: 40px;
+}
+
+footer a {
+    color: #757575!important;
+}
+
+#datepicker,
+.table-condensed {
+    width: 300px;
+    height:300px;
+}
+
+#datepicker1,
+.table-condensed {
+    width: 300px;
+    height:300px;
+}
+
+@media screen and (min-width: 1201px){
+    .table-responsive {
+        display: inline;
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .table-responsive {
+        display: block;
+    }
+}
+

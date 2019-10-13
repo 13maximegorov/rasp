@@ -1,21 +1,21 @@
 @extends('layouts.welcome')
 
 @section('content')
-    <div class="center-align web-result">
+    <div class="text-center web-result">
         @if(\Illuminate\Support\Facades\Session::has('infoTeacher'))
             <h3>на <b>{{\Illuminate\Support\Facades\Session::get('infoTeacher')['DateShedule']}}</b> для преподавателя <b>{{\Illuminate\Support\Facades\Session::get('infoTeacher')['Teacher']}}</b></h3>
         @endif
     </div>
-    <div class="left-align prev">
-        <a href="/" class="waves-effect waves-light btn"><i class="material-icons left">fast_rewind</i>Назад</a>
+    <div class="text-left prev">
+        <a href="/" class="btn teal-b text-white d-inline-block">Назад</a>
     </div>
-    <div class="center-align hide-on-large-only show-on-small">
-        <p class="red-text">*таблица листается влево-вправо</p>
+    <div class="text-center d-block d-sm-block d-md-none">
+        <p class="text-danger">*таблица листается влево-вправо</p>
     </div>
     <div>
-                <div class="center-align">
+                <div class="text-center">
                     @if(\Illuminate\Support\Facades\Session::has('sheduleT'))
-                            <table class="striped responsive-table">
+                            <table class="table table-striped table-responsive w-100">
                                 <thead>
                                 <tr>
                                     <th scope="col">Пара</th>
@@ -48,11 +48,46 @@
                                 </tbody>
                             </table>
                     @else
-                        <div class="card-panel grey lighten-3" role="alert">
-                            {{\Illuminate\Support\Facades\Session::get('message')}}
+                        <div class="alert alert-secondary mt-3" role="alert">
+                            {{\Illuminate\Support\Facades\Session::get('messageT')}}
                         </div>
                         @endif
                 </div>
     </div>
+    <div class="mt-5">
+        <form action="/teachers" method="post">
+            {{csrf_field()}}
+            <div class="">
+                <div class="w-100">
+                    <div id="box">
+                        <div class="mx-auto" id="datepicker"></div>
+                        <input name="date" type="hidden" value="{{\Illuminate\Support\Facades\Session::get('infoTeacher')['DateShedule']}}" id="my_hidden_input">
+                    </div>
+                </div>
+            </div>
+            <div class="d-none">
+                <li><button id="go" name="teacher" type="submit" value="{{\Illuminate\Support\Facades\Session::get('infoTeacher')['Teacher']}}" class="gr" href="#">{{\Illuminate\Support\Facades\Session::get('infoTeacher')['Teacher']}}</button></li>
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#datepicker').datepicker({
+                language: 'ru',
+                weekStart: 1,
+                format: 'yyyy-mm-dd',
+                startDate: '2019-01-01',
+                orientation: "top auto"
+            });
+            $('#datepicker').datepicker('setDate', $('#my_hidden_input').val());
+            $('#datepicker').on('changeDate', function() {
+                $('#my_hidden_input').val(
+                    $('#datepicker').datepicker('getFormattedDate')
+                );
+                $('#go').click()
+            });
+
+        });
+    </script>
 @endsection
 

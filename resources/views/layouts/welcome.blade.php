@@ -12,21 +12,29 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{{asset('css/bootstrap-datepicker.min.css')}}"  media="screen,projection"/>
         <link rel="stylesheet" href="{{asset('css/style1.css')}}">
+
+        <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap-datepicker.ru.min.js')}}"></script>
+        <script src="{{asset('js/main1.js')}}"></script>
+
 
         <!-- Styles -->
     </head>
     <body>
-    <nav>
-        <div class="nav-wrapper teal">
+        <nav class="navbar navbar-expand-lg teal-b shadow-sm">
             <div class="container">
-                <a href="/" class="brand-logo center">УАТК</a>
+                <div class="text-center w-100">
+                    <h3 class="mb-0 d-inline-block"><a href="/" class="text-white">УАТК</a></h3>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
         <div class="main">
-            <div class="center-align">
+            <div class="text-center">
                 <h3 class="rasp-title">Расписание</h3>
             </div>
             <div class="container">
@@ -34,17 +42,16 @@
             </div>
         </div>
 
-        <footer class="page-footer grey lighten-5">
+        <footer class="page-footer">
             <div class="footer-copyright">
-                <div class="container grey-text text-darken-1">
-                    {{date("Y")}}
-                    <a class="grey-text text-darken-1 right" href="http://www.uatk.ru">УАТК</a>
+                <div class="container pt-2">
+                    <div class="row justify-content-between px-3">
+                        {{date("Y")}}
+                        <a href="http://www.uatk.ru">УАТК</a>
+                    </div>
                 </div>
             </div>
         </footer>
-        <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
-    <script src="{{asset('js/main1.js')}}"></script>
-        <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
     </body>
 </html>
 

@@ -53,11 +53,12 @@ class IndexController extends Controller
         $shedule = $client->GetShedule($params)->return;
         $sheduleArray = (array) $shedule;
         if (!empty($sheduleArray)) {
-            Session::flash('shedule', $sheduleArray['Rows']);
+            Session::put('sheduleG', $sheduleArray['Rows']);
         } else {
-            Session::flash('message', 'Расписания нет');
+            Session::put('messageG', 'Расписания нет');
         }
-        Session::flash('infoGroup', $params);
+        Session::put('infoGroup', $params);
+        Session::save();
         return redirect('/result-student');
     }
 
@@ -78,11 +79,12 @@ class IndexController extends Controller
         $shedule = $client->GetSheduleTeacher($params)->return;
         $sheduleArray = (array) $shedule;
         if (!empty($sheduleArray)) {
-            Session::flash('sheduleT', $sheduleArray['Rows']);
+            Session::put('sheduleT', $sheduleArray['Rows']);
         } else {
-            Session::flash('message', 'Расписания нет');
+            Session::put('messageT', 'Расписания нет');
         }
-        Session::flash('infoTeacher', $params);
+        Session::put('infoTeacher', $params);
+        Session::save();
         return redirect('/result-teacher');
     }
 

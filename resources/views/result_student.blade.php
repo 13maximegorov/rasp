@@ -1,21 +1,21 @@
 @extends('layouts.welcome')
 
 @section('content')
-    <div class="center-align web-result">
+    <div class="text-center web-result">
         @if(\Illuminate\Support\Facades\Session::has('infoGroup'))
             <h3>на <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['DateShedule']}}</b> для группы <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['Group']}}</b></h3>
         @endif
     </div>
-    <div class="left-align prev">
-        <a href="/" class="waves-effect waves-light btn"><i class="material-icons left">fast_rewind</i>Назад</a>
+    <div class="text-left prev">
+        <a href="/" class="btn teal-b text-white d-inline-block">Назад</a>
     </div>
-    <div class="center-align hide-on-large-only show-on-small">
-        <p class="red-text">*таблица листается влево-вправо</p>
+    <div class="text-center d-block d-sm-block d-md-none">
+        <p class="text-danger">*таблица листается влево-вправо</p>
     </div>
     <div>
-                <div class="center-align">
-                    @if(\Illuminate\Support\Facades\Session::has('shedule'))
-                    <table class="striped responsive-table">
+                <div class="text-center">
+                    @if(\Illuminate\Support\Facades\Session::has('sheduleG'))
+                    <table class="table table-striped table-responsive w-100">
                         <thead>
                         <tr>
                             <th scope="col">Пара</th>
@@ -26,8 +26,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @if(array_key_exists(0, \Illuminate\Support\Facades\Session::get('shedule')))
-                                @foreach(\Illuminate\Support\Facades\Session::get('shedule') as $shedule)
+                            @if(array_key_exists(0, \Illuminate\Support\Facades\Session::get('sheduleG')))
+                                @foreach(\Illuminate\Support\Facades\Session::get('sheduleG') as $shedule)
                                     <tr>
                                         <td>{{$shedule->NumberLesson}}</td>
                                         <td>{{$shedule->Discipline->Name}}</td>
@@ -38,21 +38,56 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td>{{\Illuminate\Support\Facades\Session::get('shedule')->NumberLesson}}</td>
-                                    <td>{{\Illuminate\Support\Facades\Session::get('shedule')->Discipline->Name}}</td>
-                                    <td>{{\Illuminate\Support\Facades\Session::get('shedule')->Teacher->Name}}</td>
-                                    <td>{{\Illuminate\Support\Facades\Session::get('shedule')->Territory->Name}}</td>
-                                    <td>{{\Illuminate\Support\Facades\Session::get('shedule')->LectureHall->Name}}</td>
+                                    <td>{{\Illuminate\Support\Facades\Session::get('sheduleG')->NumberLesson}}</td>
+                                    <td>{{\Illuminate\Support\Facades\Session::get('sheduleG')->Discipline->Name}}</td>
+                                    <td>{{\Illuminate\Support\Facades\Session::get('sheduleG')->Teacher->Name}}</td>
+                                    <td>{{\Illuminate\Support\Facades\Session::get('sheduleG')->Territory->Name}}</td>
+                                    <td>{{\Illuminate\Support\Facades\Session::get('sheduleG')->LectureHall->Name}}</td>
                                 </tr>
                             @endif
                         </tbody>
                     </table>
                     @else
-                        <div class="card-panel grey lighten-3" role="alert">
-                            {{\Illuminate\Support\Facades\Session::get('message')}}
+                        <div class="alert alert-secondary mt-3" role="alert">
+                            {{\Illuminate\Support\Facades\Session::get('messageG')}}
                         </div>
                     @endif
                 </div>
     </div>
+    <div class="mt-5">
+        <form action="/students" method="post">
+            {{csrf_field()}}
+            <div class="">
+                <div class="w-100">
+                   <div id="box">
+                       <div class="mx-auto" id="datepicker"></div>
+                       <input name="date" type="hidden" value="{{\Illuminate\Support\Facades\Session::get('infoGroup')['DateShedule']}}" id="my_hidden_input">
+                   </div>
+                </div>
+            </div>
+            <div class="d-none">
+                <li><button id="go" name="group" type="submit" value="{{\Illuminate\Support\Facades\Session::get('infoGroup')['Group']}}" class="gr" href="#">{{\Illuminate\Support\Facades\Session::get('infoGroup')['Group']}}</button></li>
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#datepicker').datepicker({
+                language: 'ru',
+                weekStart: 1,
+                format: 'yyyy-mm-dd',
+                startDate: '2019-01-01',
+                orientation: "top auto"
+            });
+            $('#datepicker').datepicker('setDate', $('#my_hidden_input').val());
+            $('#datepicker').on('changeDate', function() {
+                $('#my_hidden_input').val(
+                    $('#datepicker').datepicker('getFormattedDate')
+                );
+                $('#go').click()
+            });
+
+        });
+    </script>
 @endsection
 

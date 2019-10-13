@@ -2,31 +2,55 @@
 
 @section('content')
     <div>
-        <ul class="nav-pan center-align">
-            <li class="waves-effect waves-teal btn-flat"><a href="/students" class="black-text">Студенты</a></li>
-            <li class="waves-effect waves-block btn"><a href="/teachers" class="white-text">Преподаватели</a></li>
+        <ul class="nav-pan text-center">
+            <li class="btn
+"><a href="/students" class="text-dark">Студенты</a></li>
+            <li class="btn teal-b"><a href="/teachers" class="text-white">Преподаватели</a></li>
         </ul>
     </div>
-    <div class="row">
-        <div class="">
-    <div class="left-align prev">
-        <a href="/" class="waves-effect waves-light btn teal lighten-2"><i class="material-icons left">fast_rewind</i>Назад</a>
-    </div>
+        <div>
+            <div class="text-left prev">
+                <a href="/" class="btn teal-b text-white d-inline-block">Назад</a>
+            </div>
     <form action="/teachers" method="post" class="center-align">
         {{csrf_field()}}
-        <div class="input-field">
-            <select name="teacher" required>
-                <option value="" disabled selected>Выберите преподавателя</option>
-                @foreach($teachers as $teacher)
-                <option value="{{$teacher}}">{{$teacher}}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="input-field"><input name="date" type="text" class="datepicker" placeholder="Дата"></div>
-        <div class="input-field">
-            <button type="submit" value="any_value" class="waves-effect waves-light btn-large btn-sub" name="action">Найти</button>
-        </div>
+            <div class="row">
+                <div class="col-12 col-md-8 order-1 order-md-0 order-lg-0 order-xl-0">
+                    <div>
+                        <ul class="group_list text-left">
+                                @foreach($teachers as $teacher)
+                                    <li><button class="text-left" name="teacher" type="submit" value="{{$teacher}}" class="gr" href="#">{{$teacher}}</button></li>
+                                @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-center mb-5">
+                    <div id="box">
+                        <div id="datepicker" class="mx-auto"></div>
+                        <input name="date" type="hidden" id="my_hidden_input">
+                    </div>
+                </div>
+            </div>
     </form>
         </div>
-    </div>
+    <script>
+        $(document).ready(function(){
+            $('#datepicker').datepicker({
+                language: 'ru',
+                weekStart: 1,
+                format: 'yyyy-mm-dd',
+                startDate: '2019-01-01',
+                orientation: "top auto"
+            }).datepicker("setDate",'now');
+            $('#my_hidden_input').val(
+                $('#datepicker').datepicker('getFormattedDate')
+            );
+            $('#datepicker').on('changeDate', function() {
+                $('#my_hidden_input').val(
+                    $('#datepicker').datepicker('getFormattedDate')
+                );
+            });
+
+        });
+    </script>
 @endsection

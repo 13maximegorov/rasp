@@ -2,22 +2,20 @@
 
 @section('content')
         <div class="row center-align">
-            <div class="col s12 m6 l4 offset-l2 offset-0">
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-2 offset-0">
                 <a href="/students">
-                    <div class="card hoverable">
-                        <img class="card-img-top" src="{{asset('img/students1.svg')}}" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Студенты</h5>
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Учебные группы</h5>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="col s12 m6 l4">
+            <div class="col-12 col-md-6 col-lg-4">
                 <a href="/teachers">
-                    <div class="card hoverable">
-                        <img class="card-img-top" src="{{asset('img/teacher1.svg')}}" alt="">
-                        <div class="card-body">
+                    <div class="card mb-3">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Преподаватели</h5>
                         </div>
                     </div>
