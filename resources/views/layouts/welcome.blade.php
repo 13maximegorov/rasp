@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="{{asset('css/bootstrap-datepicker.min.css')}}"  media="screen,projection"/>
-        <link rel="stylesheet" href="{{asset('css/style1.css')}}">
+        <link rel="stylesheet" href="{{asset('css/style2.css')}}">
 
         <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
