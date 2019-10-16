@@ -70,7 +70,7 @@
     <div class="mt-5">
         <form action="/teachers" method="post">
             {{csrf_field()}}
-            <div class="">
+            <div class="mb-4">
                 <div class="w-100">
                     <div id="box">
                         <div class="mx-auto" id="datepicker"></div>
