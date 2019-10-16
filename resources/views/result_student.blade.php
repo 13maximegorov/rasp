@@ -3,7 +3,7 @@
 @section('content')
     <div class="text-center web-result">
         @if(\Illuminate\Support\Facades\Session::has('infoGroup'))
-            <h3>на <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['DateShedule']}}</b> для группы <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['Group']}}</b></h3>
+            <h3>на <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['DateShedule1']}}</b> для группы <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['Group']}}</b></h3>
         @endif
     </div>
     <div>

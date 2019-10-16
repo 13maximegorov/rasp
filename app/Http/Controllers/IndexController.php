@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use mysql_xdevapi\Exception;
 use SoapClient;
 use DateTime;
 
@@ -49,13 +50,12 @@ class IndexController extends Controller
 
         Session::flush();
         ini_set("soap.wsdl_cache_enabled", "0");
-        $client = new SoapClient("http://77.94.125.2:48666/collegework/ws/shedule?wsdl", ['location' => 'http://77.94.125.2:48666/collegework/ws/shedule', 'login' => "WS", 'password' => "123", 'exceptions' => 1]);
+        $client = new SoapClient("http://77.94.125.2:48666/collegework/ws/shedule?wsdl", ['location' => 'http://77.94.125.2:48666/collegework/ws/shedule', 'login' => "WS", 'password' => "123", 'exceptions' => 0]);
         $params['Group'] = $request->group;
         $params['DateShedule'] = $request->date;
         $p['DateShedule'] = $request->date;
 
         $shedule = $client->GetShedule($params)->return;
-        $times = $client->GetTime($p)->return;
 
         $sheduleArray = (array) $shedule;
 
@@ -65,26 +65,36 @@ class IndexController extends Controller
             Session::put('messageG', 'Расписания нет');
         }
 
-        $time = (array)$times;
-        if (array_key_exists('RowsOfTime', $time)) {
-            $time = $time['RowsOfTime'];
-            if ($time[0]->NumberLesson == 1) {
-                array_unshift($time, NULL);
-                unset($time[0]);
-            }
-            // из вида 2019-10-17T8:00:00 в нормальное 8:00
-            foreach ($time as $v) {
-                $b = $v->Begin;
-                $e = $v->End;
-                $datetime1 = new DateTime($b);
-                $datetime2 = new DateTime($e);
-                $times1 = $datetime1->format('H:i');
-                $times2 = $datetime2->format('H:i');
-                $v->Begin = $times1;
-                $v->End = $times2;
+        if(!is_soap_fault($times = $client->GetTime($p))) {
+            $time = (array)$times->return;
+            if (array_key_exists('RowsOfTime', $time)) {
+                $time = $time['RowsOfTime'];
+                if ($time[0]->NumberLesson == 1) {
+                    array_unshift($time, NULL);
+                    unset($time[0]);
+                }
+                // из вида 2019-10-17T8:00:00 в нормальное 8:00
+                foreach ($time as $v) {
+                    $b = $v->Begin;
+                    $e = $v->End;
+                    $datetime1 = new DateTime($b);
+                    $datetime2 = new DateTime($e);
+                    $times1 = $datetime1->format('H:i');
+                    $times2 = $datetime2->format('H:i');
+                    $v->Begin = $times1;
+                    $v->End = $times2;
+                }
             }
         }
-        Session::put('time', $time);
+
+        $datetime = new DateTime($request->date);
+        $times1 = $datetime->format('d.m.Y');
+        $params['DateShedule1'] = $times1;
+
+        if (isset($time)) {
+            Session::put('time', $time);
+        }
+
         Session::put('infoGroup', $params);
         Session::save();
         return redirect('/result-student');
@@ -102,13 +112,12 @@ class IndexController extends Controller
 
         Session::flush();
         ini_set("soap.wsdl_cache_enabled", "0");
-        $client = new SoapClient("http://77.94.125.2:48666/collegework/ws/shedule?wsdl", ['location' => 'http://77.94.125.2:48666/collegework/ws/shedule', 'login' => "WS", 'password' => "123", 'exceptions' => 1]);
+        $client = new SoapClient("http://77.94.125.2:48666/collegework/ws/shedule?wsdl", ['location' => 'http://77.94.125.2:48666/collegework/ws/shedule', 'login' => "WS", 'password' => "123", 'exceptions' => 0]);
         $params['Teacher'] = $request->teacher;
         $params['DateShedule'] = $request->date;
         $p['DateShedule'] = $request->date;
 
         $shedule = $client->GetSheduleTeacher($params)->return;
-        $times = $client->GetTime($p)->return;
 
         $sheduleArray = (array) $shedule;
         if (!empty($sheduleArray)) {
@@ -117,23 +126,25 @@ class IndexController extends Controller
             Session::put('messageT', 'Расписания нет');
         }
 
-        $time = (array)$times;
-        if (array_key_exists('RowsOfTime', $time)) {
-            $time = $time['RowsOfTime'];
-            if ($time[0]->NumberLesson == 1) {
-                array_unshift($time, NULL);
-                unset($time[0]);
-            }
-            // из вида 2019-10-17T8:00:00 в нормальное 8:00
-            foreach ($time as $v) {
-                $b = $v->Begin;
-                $e = $v->End;
-                $datetime1 = new DateTime($b);
-                $datetime2 = new DateTime($e);
-                $times1 = $datetime1->format('H:i');
-                $times2 = $datetime2->format('H:i');
-                $v->Begin = $times1;
-                $v->End = $times2;
+        if(!is_soap_fault($times = $client->GetTime($p))) {
+            $time = (array)$times->return;
+            if (array_key_exists('RowsOfTime', $time)) {
+                $time = $time['RowsOfTime'];
+                if ($time[0]->NumberLesson == 1) {
+                    array_unshift($time, NULL);
+                    unset($time[0]);
+                }
+                // из вида 2019-10-17T8:00:00 в нормальное 8:00
+                foreach ($time as $v) {
+                    $b = $v->Begin;
+                    $e = $v->End;
+                    $datetime1 = new DateTime($b);
+                    $datetime2 = new DateTime($e);
+                    $times1 = $datetime1->format('H:i');
+                    $times2 = $datetime2->format('H:i');
+                    $v->Begin = $times1;
+                    $v->End = $times2;
+                }
             }
         }
 
@@ -141,7 +152,9 @@ class IndexController extends Controller
         $times1 = $datetime->format('d.m.Y');
         $params['DateShedule1'] = $times1;
 
-        Session::put('timeT', $time);
+        if (isset($time)) {
+            Session::put('timeT', $time);
+        }
         Session::put('infoTeacher', $params);
         Session::save();
         return redirect('/result-teacher');
