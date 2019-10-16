@@ -34,6 +34,11 @@ p, h1, h2, h3, h4, h5, span {
 
 .web-result h3 {
     font-size: 26px!important;
+    font-weight: 400;
+}
+
+.web-result b {
+    color: #f57c00;
 }
 
 @media screen and (max-width: 362px){

@@ -4,7 +4,7 @@
     <div>
         <ul class="nav-pan text-center">
             <li class="btn
-"><a href="/students" class="text-dark">Студенты</a></li>
+"><a href="/students" class="text-dark">Учебные группы</a></li>
             <li class="btn teal-b"><a href="/teachers" class="text-white">Преподаватели</a></li>
         </ul>
     </div>

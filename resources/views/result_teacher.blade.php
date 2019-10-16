@@ -3,11 +3,18 @@
 @section('content')
     <div class="text-center web-result">
         @if(\Illuminate\Support\Facades\Session::has('infoTeacher'))
-            <h3>на <b>{{\Illuminate\Support\Facades\Session::get('infoTeacher')['DateShedule']}}</b> для преподавателя <b>{{\Illuminate\Support\Facades\Session::get('infoTeacher')['Teacher']}}</b></h3>
+            <h3>на <b>{{\Illuminate\Support\Facades\Session::get('infoTeacher')['DateShedule1']}}</b> для преподавателя <b>{{\Illuminate\Support\Facades\Session::get('infoTeacher')['Teacher']}}</b></h3>
         @endif
     </div>
+    <div>
+        <ul class="nav-pan text-center">
+            <li class="btn btn-light
+"><a href="/students" class="text-dark">Учебные группы</a></li>
+            <li class="btn btn-light"><a href="/teachers" class="text-dark">Преподаватели</a></li>
+        </ul>
+    </div>
     <div class="text-left prev">
-        <a href="/" class="btn teal-b text-white d-inline-block">Назад</a>
+        <a href="/teachers" class="btn teal-b text-white d-inline-block">Назад</a>
     </div>
     <div class="text-center d-block d-sm-block d-md-none">
         <p class="text-danger">*таблица листается влево-вправо</p>
@@ -19,6 +26,9 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">Пара</th>
+                                    @if (\Illuminate\Support\Facades\Session::has('timeT'))
+                                        <th scope="col">Время</th>
+                                    @endif
                                     <th scope="col">Группа</th>
                                     <th scope="col">Дисциплина</th>
                                     <th scope="col">Территория</th>
@@ -30,6 +40,9 @@
                                     @foreach(\Illuminate\Support\Facades\Session::get('sheduleT') as $shedule)
                                         <tr>
                                             <td>{{$shedule->NumberLesson}}</td>
+                                            @if (\Illuminate\Support\Facades\Session::has('timeT'))
+                                                <td>{{\Illuminate\Support\Facades\Session::get('timeT')[$shedule->NumberLesson]->Begin}} - {{\Illuminate\Support\Facades\Session::get('timeT')[$shedule->NumberLesson]->End}}</td>
+                                            @endif
                                             <td>{{$shedule->Group}}</td>
                                             <td>{{$shedule->Discipline->Name}}</td>
                                             <td>{{$shedule->Territory->Name}}</td>

@@ -6,8 +6,15 @@
             <h3>на <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['DateShedule']}}</b> для группы <b>{{\Illuminate\Support\Facades\Session::get('infoGroup')['Group']}}</b></h3>
         @endif
     </div>
+    <div>
+        <ul class="nav-pan text-center">
+            <li class="btn btn-light
+"><a href="/students" class="text-dark">Учебные группы</a></li>
+            <li class="btn btn-light"><a href="/teachers" class="text-dark">Преподаватели</a></li>
+        </ul>
+    </div>
     <div class="text-left prev">
-        <a href="/" class="btn teal-b text-white d-inline-block">Назад</a>
+        <a href="/students" class="btn teal-b text-white d-inline-block">Назад</a>
     </div>
     <div class="text-center d-block d-sm-block d-md-none">
         <p class="text-danger">*таблица листается влево-вправо</p>
@@ -19,6 +26,9 @@
                         <thead>
                         <tr>
                             <th scope="col">Пара</th>
+                            @if (\Illuminate\Support\Facades\Session::has('time'))
+                                <th scope="col">Время</th>
+                            @endif
                             <th scope="col">Дисциплина</th>
                             <th scope="col">Преподаватель</th>
                             <th scope="col">Территория</th>
@@ -30,6 +40,9 @@
                                 @foreach(\Illuminate\Support\Facades\Session::get('sheduleG') as $shedule)
                                     <tr>
                                         <td>{{$shedule->NumberLesson}}</td>
+                                        @if (\Illuminate\Support\Facades\Session::has('time'))
+                                            <td>{{\Illuminate\Support\Facades\Session::get('time')[$shedule->NumberLesson]->Begin}} - {{\Illuminate\Support\Facades\Session::get('time')[$shedule->NumberLesson]->End}}</td>
+                                        @endif
                                         <td>{{$shedule->Discipline->Name}}</td>
                                         <td>{{$shedule->Teacher->Name}}</td>
                                         <td>{{$shedule->Territory->Name}}</td>
